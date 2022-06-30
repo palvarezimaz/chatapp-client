@@ -1,5 +1,6 @@
 import React from 'react';
 import io from 'socket.io-client';
+import Message from './components/Message';
 
 const App = () => {
   const [time, setTime] = React.useState('fetching');
@@ -17,6 +18,7 @@ const App = () => {
   return (
     <div className="App">
       <p>{time}</p>
+      <Message />
 
       {/* <span>State: {this.state.connected ? 'Connected' : 'Disconnected'}</span>
       <span>Current transport: {this.state.currentTransport}</span>
