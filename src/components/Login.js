@@ -1,28 +1,45 @@
-import React, { useState } from 'react';
-import { Socket } from 'socket.io-client';
+import React, { useRef } from 'react';
+import { Container, Form, Button } from 'react-bootstrap';
+import { Socket as socket } from 'socket.io-client';
+import io from 'socket.io-client';
 
-function Login() {
-  const [userName, setUserName] = useState('');
-  // const [room]
+function Login({ onUserNameSubmit }) {
+  const socket = io('http://localhost:3002');
+  socket.on('connect', () => console.log(socket.id));
 
-  /// Under construction
+  const userName = useRef();
 
-  const userLogin = () => {
-    if (userName == !'') {
-      Socket.emit('joinRoom', { userName });
-    }
-  };
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    onUserNameSubmit(userName.current.value);
+
+    // socket.on('name', (userName) => userName);
+    socket.emit('test', userName);
+    // socket.on('disconnect', () => 'server disconnected');
+  }
+
+  socket.on('message', (msg) => {
+    console.log(msg);
+  });
+
   return (
-    <div className="Login">
-      <h1>Welcome to ChatApp</h1>
-      <input
-        type="text"
-        placeholder="Your username"
-        value={userName}
-        onChange={(e) => setUserName(e.target.value)}
-      />
-      <button>Get me in</button>
-    </div>
+    <Container
+      className="align-items-center d-flex"
+      style={{ height: '120vh' }}
+    >
+      <h1> Welcome to ChatApp</h1>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group>
+          <Form.Label>Select your username</Form.Label>
+          <Form.Control type="text" ref={userName} required />
+        </Form.Group>
+
+        <Button type="submit" className="mr-2">
+          Join
+        </Button>
+      </Form>
+    </Container>
   );
 }
 
