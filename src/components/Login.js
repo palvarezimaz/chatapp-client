@@ -1,11 +1,11 @@
 import React, { useRef } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
-import { Socket as socket } from 'socket.io-client';
+// import { Socket as socket } from 'socket.io-client';
 import io from 'socket.io-client';
 
 function Login({ onUserNameSubmit }) {
   const socket = io('http://localhost:3002');
-  socket.on('connect', () => console.log(socket.id));
+  socket.on('connect', () => console.log(`Hola ${socket.id}`));
 
   const userName = useRef();
 
@@ -14,14 +14,14 @@ function Login({ onUserNameSubmit }) {
 
     onUserNameSubmit(userName.current.value);
 
-    // socket.on('name', (userName) => userName);
-    socket.emit('test', userName);
-    // socket.on('disconnect', () => 'server disconnected');
-  }
+    const loggedUser = userName.current.value;
+    socket.auth = { userName };
+    // socket.auth = { loggedUser };
+    socket.connect();
+    socket.emit('Welcome Message', loggedUser);
 
-  socket.on('message', (msg) => {
-    console.log(msg);
-  });
+    socket.on('disconnect', () => 'server disconnected');
+  }
 
   return (
     <Container

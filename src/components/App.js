@@ -1,22 +1,18 @@
-import socket from '../sockets';
-
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import io from 'socket.io-client';
+// import { io } from 'socket.io-client';
 import Login, { userName } from './Login';
 import MessageArea from './MessageArea';
+import socket from '../socket';
 
 function App() {
-  const socket = io();
   const [userName, setUserName] = useState();
 
-  // const socket = io('localhost:3002');
-  // socket.emit('test', () => console.log(userName));
-
-  const onUserNameSelection = (userName) => {
-    socket.auth = { userName };
-    socket.connect();
-  };
+  //maybe use onUserNameSubmit
+  // const onUserNameSelection = (userName) => {
+  //   socket.auth = { userName };
+  //   socket.connect();
+  // };
 
   const sendMessage = () => {
     socket.emit('hello!');
