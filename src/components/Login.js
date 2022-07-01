@@ -1,28 +1,32 @@
-import React, { useState } from 'react';
-import { Socket } from 'socket.io-client';
+import React, { useRef } from 'react';
+import { Container, Form, Button } from 'react-bootstrap';
 
-function Login() {
-  const [userName, setUserName] = useState('');
-  // const [room]
+function Login({ onUserNameSubmit }) {
+  const userName = useRef();
 
-  /// Under construction
+  function handleSubmit(e) {
+    e.preventDefault();
 
-  const userLogin = () => {
-    if (userName == !'') {
-      Socket.emit('joinRoom', { userName });
-    }
-  };
+    onUserNameSubmit(userName.current.value);
+  }
+
   return (
-    <div className="Login">
-      <h1>Welcome to ChatApp</h1>
-      <input
-        type="text"
-        placeholder="Your username"
-        value={userName}
-        onChange={(e) => setUserName(e.target.value)}
-      />
-      <button>Get me in</button>
-    </div>
+    <Container
+      className="align-items-center d-flex"
+      style={{ height: '120vh' }}
+    >
+      <h1> Welcome to ChatApp</h1>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group>
+          <Form.Label>Select your username</Form.Label>
+          <Form.Control type="text" ref={userName} required />
+        </Form.Group>
+
+        <Button type="submit" className="mr-2">
+          Join
+        </Button>
+      </Form>
+    </Container>
   );
 }
 
