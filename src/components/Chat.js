@@ -1,37 +1,22 @@
-// import { loggedUser } from './MessageArea';
-import React, { useState } from 'react';
-import io from 'socket.io-client';
+import React from 'react';
 
-const socket = io('localhost:3002');
-let messageList = [];
-function Chat({ loggedUser }) {
-  const [message, setMessage] = useState('');
-
-  const updateMessage = (event) => {
-    setMessage(event.target.value);
-  };
-  const sendMessage = (e) => {
-    e.preventDefault();
-    console.log(message);
-    if (message !== '') {
-      socket.emit('chat message', message, loggedUser);
-      // socket.on('chat message', message);
-      messageList = [...messageList, message];
-      console.log(messageList);
-      setMessage('');
-    }
-  };
-  /////////
-
+function Chat({
+  loggedUser,
+  sendMessage,
+  message,
+  messageList,
+  handleMessageChange,
+}) {
   return (
     <div className="Chat">
       <ul id="messages">{messageList}</ul>
+      {/* <ul id="messages">{message}</ul> */}
+
       <form id="form" action="">
         <input
           className="sendMessage"
           id="input"
-          onChange={updateMessage}
-          // autoComplete="off"
+          onChange={handleMessageChange}
           value={message}
         />
         <button onClick={sendMessage}>Send</button>
