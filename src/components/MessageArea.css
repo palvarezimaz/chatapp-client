@@ -1,0 +1,19 @@
+.side-panel {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 25%;
+  overflow-x: hidden;
+  /* overflow-y: hidden; */
+  padding: 10px;
+  background-color: #0f7e53;
+  color: white;
+}
+
+.message-area {
+  position: fixed;
+  margin-right: 25%;
+  width: 75%;
+  overflow-x: hidden;
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import './Chat.css';
 
 function Chat({
   loggedUser,
@@ -9,12 +10,19 @@ function Chat({
 }) {
   return (
     <div className="Chat">
-      <ul id="messages">{messageList}</ul>
+      <section className="messages">
+        {messageList &&
+          messageList.map((eachMsg, index) => (
+            <li key={index} className="messagesEntry">
+              {eachMsg}
+            </li>
+          ))}
+      </section>
       {/* <ul id="messages">{message}</ul> */}
 
-      <form id="form" action="">
+      <form className="form" action="">
         <input
-          className="sendMessage"
+          className="input"
           id="input"
           onChange={handleMessageChange}
           value={message}

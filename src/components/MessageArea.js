@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import './MessageArea.css';
 
 // import socket from '../sockets';
 import io from 'socket.io-client';
 import Chat from './Chat';
+import SidePanel from './SidePanel';
 
 const socket = io('localhost:3002');
 socket.connect();
@@ -39,18 +41,25 @@ function MessageArea({ userName }) {
   };
 
   return (
-    <div className="MessageArea">
-      <h1>Message Area</h1>
-      <h2>Welcome {userName} 🎉</h2>
-      <button onClick={sendMessage2}>Remind everybody that you are here</button>
-      <Chat
-        loggedUser={loggedUser}
-        sendMessage={sendMessage}
-        message={message}
-        messageList={messageList}
-        handleMessageChange={handleMessageChange}
-      />
-    </div>
+    <>
+      <div className="SidePanel side-panel">
+        <SidePanel />
+      </div>
+      <div className="MessageArea message-area">
+        <h1>Message Area</h1>
+        <h2>Welcome {userName} 🎉</h2>
+        <button onClick={sendMessage2}>
+          Remind everybody that you are here
+        </button>
+        <Chat
+          loggedUser={loggedUser}
+          sendMessage={sendMessage}
+          message={message}
+          messageList={messageList}
+          handleMessageChange={handleMessageChange}
+        />
+      </div>
+    </>
   );
 }
 
