@@ -87,19 +87,25 @@ function MessageArea({ userName }) {
     // console.log(message, loggedUser);
     setMessage('');
   });
-
+  ////////////////////////////////////////////
   /////////////// Private messaging //////////
-  ////////////////////
+  ////////////////////////////////////////////
   const [selectedUserForDirectChat, setselectedUserForDirectChat] =
     useState(null);
-  const selectUserForDirectChat = (indexOfUser) => {
-    console.log(usersList);
-    const selectedUserForDirectChat = usersList[indexOfUser].username;
+  const selectUserForDirectChat = (index) => {
+    console.log(
+      `userlistindexusername: ${usersList[index].username} userlistindex ${usersList[index]}`
+    );
+    console.log(loggedUser);
+    if (usersList[index].username !== loggedUser) {
+      const selectedUserForDirectChat = usersList[index].username;
+      setselectedUserForDirectChat(
+        `Direct message to "${selectedUserForDirectChat}"`
+      );
+    }
+
     console.log(`clicking ${selectedUserForDirectChat}`);
     // usersList[indexOfUser].username;
-    setselectedUserForDirectChat(
-      `Direct message to "${selectedUserForDirectChat}"`
-    );
   };
 
   const removeDirectChatUser = () => setselectedUserForDirectChat(null);
