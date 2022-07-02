@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './MessageArea.css';
 import Chat from './Chat';
 import SidePanel from './SidePanel';
@@ -26,6 +26,7 @@ function MessageArea({ userName }) {
     user.hasNewMessages = false;
   };
 
+  // useEffect(() => {
   socket.on('users', (users) => {
     users.forEach((user) => {
       user.self = user.userID === socket.id;
@@ -40,18 +41,7 @@ function MessageArea({ userName }) {
     });
     setUsersList(users);
   });
-
-  socket.on('disconnect', (userId) => {
-    console.log(`user ${socket.id} disconnected`);
-    setUsersList(
-      usersList.forEach((user) => {
-        if (user.userID === socket.id) {
-          user.connected = false;
-        }
-      })
-    );
-  });
-
+  // });
   //////////////////////////////
   /////////////////////////////
 

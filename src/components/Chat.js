@@ -1,5 +1,6 @@
 import React from 'react';
 import './Chat.css';
+// import socket from '../socket';
 
 function Chat({
   loggedUser,
@@ -14,6 +15,8 @@ function Chat({
         {messageList &&
           messageList.map((eachMsg, index) => (
             <li key={index} className="messagesEntry">
+              {loggedUser} said:
+              <br />
               {eachMsg}
             </li>
           ))}
