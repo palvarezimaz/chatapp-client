@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
+import Animation from './Animation';
 
 function Login({ onUserNameSubmit }) {
   const userName = useRef();
@@ -26,6 +27,7 @@ function Login({ onUserNameSubmit }) {
           Join
         </Button>
       </Form>
+      <Animation />
     </Container>
   );
 }
