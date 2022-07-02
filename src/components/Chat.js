@@ -12,12 +12,12 @@ function Chat({
   return (
     <div className="Chat">
       <section className="messages">
+        {console.log(messageList)}
         {messageList &&
           messageList.map((eachMsg, index) => (
             <li key={index} className="messagesEntry">
-              {loggedUser} said:
-              <br />
-              {eachMsg}
+              {eachMsg.userName} said:
+              {eachMsg.message}
             </li>
           ))}
       </section>

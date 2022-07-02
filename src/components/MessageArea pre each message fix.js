@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './MessageArea.css';
 import Chat from './Chat';
 import SidePanel from './SidePanel';
@@ -13,7 +13,7 @@ function MessageArea({ userName }) {
   socket.connect();
 
   const [message, setMessage] = useState('');
-  const [messageList, setMessageList] = useState([]);
+  const [messageList, setMessageList] = useState('');
 
   const [usersList, setUsersList] = useState([]);
 
@@ -47,7 +47,7 @@ function MessageArea({ userName }) {
       usersList.forEach((user) => {
         if (user.userID === socket.id) {
           user.connected = false;
-          user.username = 'disconnected';
+          user.username = 'Anon';
         }
       })
     );
@@ -68,16 +68,15 @@ function MessageArea({ userName }) {
 
     console.log(message);
     if (message !== '') {
-      socket.emit('chat message', message);
+      socket.emit('chat message', message, loggedUser);
       setMessage('');
     }
   };
 
-  socket.on('chat message', (data) => {
-    const newMessage = { userName: data.username, message: data.message };
-    setMessageList([...messageList, newMessage]);
+  socket.on('chat message', (message) => {
+    setMessageList([...messageList, message]);
     // console.log(messageList);
-    // setMessage(newMessage);
+    setMessage(message);
     // console.log(message, loggedUser);
     setMessage('');
   });
@@ -121,7 +120,6 @@ function MessageArea({ userName }) {
 
   const sendMessage2 = (userName) => {
     socket.emit('Welcome Message', loggedUser);
-    // socket.on('Welcome Message', name => {} )
   };
 
   return (
