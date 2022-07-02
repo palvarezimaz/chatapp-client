@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './MessageArea.css';
+import MessageInput from './MessageInput';
 import Chat from './Chat';
+import DirectChat from './DirectChat';
 import SidePanel from './SidePanel';
 import socket from '../socket';
+import RemoveUser from './RemoveUser';
 
 function MessageArea({ userName }) {
   ////////// USERS LOGIC - PROBLEM with MIDDLEWARE
@@ -14,7 +17,6 @@ function MessageArea({ userName }) {
 
   const [message, setMessage] = useState('');
   const [messageList, setMessageList] = useState([]);
-
   const [usersList, setUsersList] = useState([]);
 
   const rooms = ['General', 'Partial'];
@@ -74,7 +76,11 @@ function MessageArea({ userName }) {
   };
 
   socket.on('chat message', (data) => {
-    const newMessage = { userName: data.username, message: data.message };
+    const newMessage = {
+      userName: data.username,
+      message: data.message,
+      timeStamp: data.timestamp,
+    };
     setMessageList([...messageList, newMessage]);
     // console.log(messageList);
     // setMessage(newMessage);
@@ -82,9 +88,23 @@ function MessageArea({ userName }) {
     setMessage('');
   });
 
-  /////////////// Private messaging
+  /////////////// Private messaging //////////
+  ////////////////////
+  const [selectedUserForDirectChat, setselectedUserForDirectChat] =
+    useState(null);
+  const selectUserForDirectChat = (indexOfUser) => {
+    console.log(usersList);
+    const selectedUserForDirectChat = usersList[indexOfUser].username;
+    console.log(`clicking ${selectedUserForDirectChat}`);
+    // usersList[indexOfUser].username;
+    setselectedUserForDirectChat(
+      `Direct message to "${selectedUserForDirectChat}"`
+    );
+  };
+
+  const removeDirectChatUser = () => setselectedUserForDirectChat(null);
   ///// SELECT USER
-  const selectedUser = usersList[0];
+  let selectedUser = usersList[0];
   socket.on('private message', ({ content, from }) => {
     for (let i = 0; i < usersList.length; i++) {
       const user = usersList[i];
@@ -127,7 +147,16 @@ function MessageArea({ userName }) {
   return (
     <>
       <div className="SidePanel side-panel">
-        <SidePanel usersList={usersList} rooms={rooms} />
+        <SidePanel
+          usersList={usersList}
+          rooms={rooms}
+          selectedUserForDirectChat={selectUserForDirectChat}
+          selectUserForDirectChat={selectUserForDirectChat}
+        />
+        <RemoveUser
+          selectedUserForDirectChat={selectedUserForDirectChat}
+          removeDirectChatUser={removeDirectChatUser}
+        />
       </div>
       <div className="MessageArea message-area">
         <h1>Message Area</h1>
@@ -136,11 +165,25 @@ function MessageArea({ userName }) {
         <button onClick={sendMessage2}>
           Remind everybody that you are here
         </button>
-        <Chat
-          loggedUser={loggedUser}
+
+        {selectedUserForDirectChat === null ? (
+          <Chat
+            loggedUser={loggedUser}
+            sendMessage={sendMessage}
+            message={message}
+            messageList={messageList}
+          />
+        ) : (
+          <DirectChat
+            loggedUser={loggedUser}
+            sendMessage={sendMessage}
+            message={message}
+            messageList={messageList}
+          />
+        )}
+        <MessageInput
           sendMessage={sendMessage}
           message={message}
-          messageList={messageList}
           handleMessageChange={handleMessageChange}
         />
       </div>

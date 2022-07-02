@@ -1,13 +1,13 @@
 import React from 'react';
 import './Chat.css';
 
-// import socket from '../socket';
-
-function Chat({ messageList }) {
+/// THINK OF A WAY TO INDIVDUALIZE THE LISTS OF MESSAGES - MAYBE USING THE GENERATING USER?
+// A NEW LIST PER USER TO?????
+function DirectChat({ messageList }) {
   return (
     <div className="Chat">
+      <h2>!!!!Direct chat!!!!!!!!</h2>
       <section className="messages">
-        <h3>General Chat</h3>
         {console.log(messageList)}
         {messageList &&
           messageList.map((eachMsg, index) => (
@@ -21,4 +21,4 @@ function Chat({ messageList }) {
   );
 }
 
-export default Chat;
+export default DirectChat;

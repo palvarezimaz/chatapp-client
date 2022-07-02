@@ -12,8 +12,9 @@
 }
 
 .message-area {
-  position: fixed;
+  /* position: fixed; */
   margin-right: 25%;
   width: 75%;
   overflow-x: hidden;
+  overflow-y: auto;
 }
