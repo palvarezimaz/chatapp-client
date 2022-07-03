@@ -1,5 +1,5 @@
 import React from 'react';
-import './Chat.css';
+import './css/Chat.css';
 
 // import socket from '../socket';
 
@@ -8,7 +8,6 @@ function Chat({ messageList }) {
     <div className="Chat">
       <section className="messages">
         <h3>General Chat</h3>
-        {console.log(messageList)}
         {messageList &&
           messageList.map((eachMsg, index) => (
             <li key={index} className="messagesEntry">

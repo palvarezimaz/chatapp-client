@@ -1,5 +1,5 @@
 import React from 'react';
-import './MessageInput.css';
+import './css/Input.css';
 
 function MessageInput({ sendMessage, message, handleMessageChange }) {
   return (

@@ -5,7 +5,7 @@ function SidePanel({
   usersList,
   rooms,
   // selectedUserForDirectChat,
-  selectUserForDirectChat,
+  userForDirectChat,
   // removeDirectChatUser,
 }) {
   return (
@@ -17,7 +17,7 @@ function SidePanel({
             <li
               key={index}
               className="eachUser"
-              onClick={() => selectUserForDirectChat(index)}
+              onClick={() => userForDirectChat(index)}
             >
               {user.username}
               <br />
@@ -35,6 +35,7 @@ function SidePanel({
           ))}
       </div>
       <div>
+        <h3>Direct message:</h3>
         <h3>
           <RemoveUser />
         </h3>

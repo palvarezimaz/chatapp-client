@@ -1,15 +1,19 @@
 import React from 'react';
-import './MessageInput.css';
+import './css/Input.css';
 
-function DirectChatInput({ sendDirectChat, message, handleMessageChange }) {
+function DirectChatInput({
+  sendDirectChat,
+  privateMessage,
+  handleDirectMessageChange,
+}) {
   return (
-    <div className="MessageInput">
+    <div className="DirectChatInput">
       <form className="form" action="">
         <input
           className="input"
           id="input"
-          onChange={handleMessageChange}
-          value={message}
+          onChange={handleDirectMessageChange}
+          value={privateMessage}
         />
         <button onClick={sendDirectChat}>Send</button>
       </form>

@@ -1,4 +1,4 @@
-import './Slider.css';
+import './css/Slider.css';
 
 function Slider() {
   return (

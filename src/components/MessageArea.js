@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './MessageArea.css';
+import './css/MessageArea.css';
 import MessageInput from './MessageInput';
 import DirectChatInput from './DirectChatInput';
 import Chat from './Chat';
@@ -17,6 +17,8 @@ function MessageArea({ userName }) {
   socket.connect();
 
   const [message, setMessage] = useState('');
+  const [privateMessage, setPrivateMessage] = useState('');
+
   const [messageList, setMessageList] = useState([]);
   const [usersList, setUsersList] = useState([]);
 
@@ -43,7 +45,8 @@ function MessageArea({ userName }) {
     });
     setUsersList(users);
   });
-
+  ////////////////////////////////////
+  //BUG//BUG//BUG//BUG//BUG//BUG//BUG//BUG
   //////// BUG //// THIS DOES NOT REFRESH IMMEDIATELY///
   socket.on('disconnect', (userId) => {
     console.log(`user ${socket.id} disconnected`);
@@ -60,7 +63,6 @@ function MessageArea({ userName }) {
 
   //////////////////////////////
   /////////////////////////////
-
   ///////////// MESSAGES //////////
   //////////////////////////////////
   function handleMessageChange(event) {
@@ -91,26 +93,34 @@ function MessageArea({ userName }) {
   ////////////////////////////////////////////
   /////////////// Direct messaging //////////
   ////////////////////////////////////////////
-  const [selectedUserForDirectChat, setselectedUserForDirectChat] =
+  const [selectedUserForDirectChat, setSelectedUserForDirectChat] =
     useState(null);
-  const selectUserForDirectChat = (index) => {
-    console.log(
-      `userlistindexusername: ${usersList[index].username} userlistindex ${usersList[index]}`
-    );
+  const [selectedDirectChatUserID, setSelectedDirectChatUserID] =
+    useState(null);
+
+  function userForDirectChat(index) {
     if (usersList[index].username !== loggedUser) {
-      const selectedUserForDirectChat = usersList[index].username;
-      setselectedUserForDirectChat(
-        `Direct message to "${selectedUserForDirectChat}"`
-      );
-      console.log(usersList);
+      let directChatUserName = usersList[index].username;
+      let directChatUserID = usersList[index].userID;
+
+      setSelectedUserForDirectChat(directChatUserName);
+      console.log(directChatUserName);
+      setSelectedDirectChatUserID(directChatUserID);
+      console.log(directChatUserID);
+      // `Direct message to "${selectedUserForDirectChat}"`
+
+      console.log(directChatUserID);
       console.log(`Selected user for direct chat${selectedUserForDirectChat}`);
+    } else {
+      console.log('no self messaging... yet!');
     }
-
-    console.log(`clicking ${selectedUserForDirectChat}`);
+    // setSelectedUserForDirectChat(x);
+    console.log(selectedUserForDirectChat);
     // usersList[indexOfUser].username;
-  };
+  }
 
-  const removeDirectChatUser = () => setselectedUserForDirectChat(null);
+  const removeDirectChatUser = () => setSelectedUserForDirectChat(null);
+  // setSelectedDirectChatUserID(null);
   ///// SELECT USER
 
   ////////////////////////////////////////
@@ -118,38 +128,58 @@ function MessageArea({ userName }) {
   ////////////////////////////////////////
   // let selectedUser = usersList[0];
   ////// change selectedUser TO PROPER NAME
+  function handleDirectMessageChange(event) {
+    setPrivateMessage(event.target.value);
+  }
+
   const sendDirectChat = (e) => {
     e.preventDefault();
-    if (message !== '') {
-      if (selectedUserForDirectChat) {
-        socket.emit('direct message', {
-          message,
-          to: selectedUserForDirectChat.userID,
-        });
-        selectedUserForDirectChat.messages.push({
-          message,
-          fromSelf: true,
-          timestamp: new Date().toLocaleTimeString(),
-        });
-      }
+
+    if (privateMessage !== '') {
+      // if (selectedUserForDirectChat === loggedUser) {
+      socket.emit('direct message', {
+        content: privateMessage,
+        to: selectedDirectChatUserID,
+      });
     }
+    /////// Messages need to be pushed into the sender userList.directmessage
+    // message: content;
+    // to: selectedDirectChatUserID;
+    // from: timestamp: new Date().toLocaleTimeString();
+
+    setPrivateMessage('');
+
+    // }
   };
 
   socket.on('direct message', ({ data, from }) => {
-    for (let i = 0; i < this.users.length; i++) {
-      const user = this.users[i];
-      if (user.userID === from) {
-        user.messages.push({
-          data,
-          fromSelf: false,
-          timestamp: data.timestamp,
-        });
-        if (user !== this.selectedUser) {
-          user.hasNewMessages = true;
-        }
-        break;
+    console.log(data);
+    console.log(from);
+    // Add the direct message to both sender and receiver direct message list inside userList.
+    for (let i = 0; i < usersList.length; i++) {
+      if (usersList[i].userID === selectedDirectChatUserID) {
+        console.log(' gettign my own message');
+        // usersList[i].directMessages = [...directMessages, data];
+      } else if (usersList[i].userID === from) {
+        console.log('the message im receiving');
+        // usersList[i].directMessages = [...directMessages, data];
       }
     }
+    // for (let i = 0; i < this.users.length; i++) {
+    //   const user = this.users[i];
+    //   if (user.userID === from) {
+    //     user.messages.push({
+    //       data,
+    //       fromSelf: false,
+    //       timestamp: data.timestamp,
+    //     });
+    //     if (user !== this.selectedUser) {
+    //       user.hasNewMessages = true;
+    //     }
+    //     break;
+    //   }
+    // }
+    setPrivateMessage('');
   });
 
   ////////////// END OF DIRECT CHAT SOCKET IO logic
@@ -174,8 +204,8 @@ function MessageArea({ userName }) {
         <SidePanel
           usersList={usersList}
           rooms={rooms}
-          selectedUserForDirectChat={selectUserForDirectChat}
-          selectUserForDirectChat={selectUserForDirectChat}
+          selectedUserForDirectChat={selectedUserForDirectChat}
+          userForDirectChat={userForDirectChat}
         />
         <RemoveUser
           selectedUserForDirectChat={selectedUserForDirectChat}
@@ -191,18 +221,12 @@ function MessageArea({ userName }) {
         </button>
 
         {selectedUserForDirectChat === null ? (
-          <Chat
-            loggedUser={loggedUser}
-            sendMessage={sendMessage}
-            message={message}
-            messageList={messageList}
-          />
+          <Chat messageList={messageList} />
         ) : (
           <DirectChat
+            usersList={usersList}
+            selectedUserForDirectChat={selectedUserForDirectChat}
             loggedUser={loggedUser}
-            sendMessage={sendMessage}
-            message={message}
-            messageList={messageList}
           />
         )}
         {selectedUserForDirectChat === null ? (
@@ -214,8 +238,8 @@ function MessageArea({ userName }) {
         ) : (
           <DirectChatInput
             sendDirectChat={sendDirectChat}
-            message={message}
-            handleMessageChange={handleMessageChange}
+            privateMessage={privateMessage}
+            handleDirectMessageChange={handleDirectMessageChange}
           />
         )}
       </div>
