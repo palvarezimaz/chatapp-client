@@ -1,26 +1,22 @@
 import React from 'react';
+import './Chat.css';
 
-function Chat({
-  loggedUser,
-  sendMessage,
-  message,
-  messageList,
-  handleMessageChange,
-}) {
+// import socket from '../socket';
+
+function Chat({ messageList }) {
   return (
     <div className="Chat">
-      <ul id="messages">{messageList}</ul>
-      {/* <ul id="messages">{message}</ul> */}
-
-      <form id="form" action="">
-        <input
-          className="sendMessage"
-          id="input"
-          onChange={handleMessageChange}
-          value={message}
-        />
-        <button onClick={sendMessage}>Send</button>
-      </form>
+      <section className="messages">
+        <h3>General Chat</h3>
+        {console.log(messageList)}
+        {messageList &&
+          messageList.map((eachMsg, index) => (
+            <li key={index} className="messagesEntry">
+              <b>{eachMsg.userName}</b> said at {eachMsg.timeStamp}:<br />
+              {eachMsg.message}
+            </li>
+          ))}
+      </section>
     </div>
   );
 }

@@ -1,5 +1,8 @@
 import React, { useRef } from 'react';
-import { Container, Form, Button } from 'react-bootstrap';
+// import { Container, Form, Button } from 'react-bootstrap';
+// import Animation from './Animation';
+import './Login.css';
+import Slider from './Slider';
 
 function Login({ onUserNameSubmit }) {
   const userName = useRef();
@@ -11,22 +14,26 @@ function Login({ onUserNameSubmit }) {
   }
 
   return (
-    <Container
-      className="align-items-center d-flex"
-      style={{ height: '120vh' }}
-    >
-      <h1> Welcome to ChatApp</h1>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group>
-          <Form.Label>Select your username</Form.Label>
-          <Form.Control type="text" ref={userName} required />
-        </Form.Group>
+    <div className="Login">
+      <div className="LoginArea">
+        <Slider />
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            ref={userName}
+            placeholder="Enter your username..."
+            required
+          />
 
-        <Button type="submit" className="mr-2">
-          Join
-        </Button>
-      </Form>
-    </Container>
+          <button type="submit" className="LoginButton">
+            Join
+          </button>
+        </form>
+        <div className="backgroundLogin"></div>
+
+        {/* <Animation /> */}
+      </div>
+    </div>
   );
 }
 
