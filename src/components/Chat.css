@@ -1,6 +1,7 @@
 .Chat {
   overflow-x: hidden;
   overflow-y: auto;
+  background-color: whitesmoke;
 }
 
 .messages {

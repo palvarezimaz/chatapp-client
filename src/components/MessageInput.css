@@ -1,5 +1,10 @@
+/* .MessageInput {
+  background-color: whitesmoke;
+} */
+
 .form {
-  background: rgba(0, 0, 0, 0.15);
+  /* background: rgba(0, 0, 0, 0.15); */
+  background: rgba(203, 77, 77, 0.15);
   padding: 0.25rem;
   position: fixed;
   bottom: 0;
