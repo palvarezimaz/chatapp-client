@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './MessageArea.css';
 import MessageInput from './MessageInput';
 import DirectChatInput from './DirectChatInput';
