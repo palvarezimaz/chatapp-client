@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 // import { Container, Form, Button } from 'react-bootstrap';
 // import Animation from './Animation';
-import './Login.css';
+import './css/Login.css';
 import Slider from './Slider';
 
 function Login({ onUserNameSubmit }) {

@@ -1,4 +1,4 @@
-import './Animation.css';
+import './css/Animation.css';
 
 function Animation() {
   return (

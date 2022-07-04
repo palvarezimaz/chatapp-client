@@ -1,18 +1,44 @@
 import React from 'react';
-import './Chat.css';
+import './css/Chat.css';
 
-/// THINK OF A WAY TO INDIVDUALIZE THE LISTS OF MESSAGES - MAYBE USING THE GENERATING USER?
-// A NEW LIST PER USER TO?????
-function DirectChat({ usersList }) {
+function DirectChat({ usersList, selectedUserForDirectChat, loggedUser }) {
+  // const hola = { userName: 'jaimito', timeStamp: 'now', message: 'test' };
+  // // console.log(hola);
+  // usersList[0].directMessages = [...usersList[0].directMessages, hola];
+  // console.log(usersList[0].directMessages);
+  // let directMessageList = [];
+  let directMessageList = usersList[0].directMessages;
+  // for (let i = 0; i < usersList.length; i++) {
+  //   if (usersList[i].directMessages[0] !== undefined) {
+  //     console.log('on the right track!');
+  //     // console.log(`users list user 0 all direct messages ${hola}`);
+  //     for (let j = 0; j < usersList[i].directMessage.length; j++) {
+  //       if (
+  //         usersList[i].directMessages[j].userName === loggedUser ||
+  //         usersList[i].directMessages[j].userName === selectedUserForDirectChat
+  //       ) {
+  //         usersList[i].directMessageList.push(usersList[i].directMessages[j]);
+  //       }
+  //     }
+  //   } else {
+  //     // console.log('direct message array is empty');
+  //     // console.log(usersList);
+  //     // console.log(directMessageList);
+  //   }
+  // }
+  // directMessageList = [...directMessageList, usersList[0].directMessages];
+  // console.log(`direct message list after pushing one ${directMessageList}`);
+  // From userList
+
   return (
     <div className="Chat">
       <h2>!!!!Direct chat!!!!!!!!</h2>
       <section className="messages">
-        {console.log(usersList)}
-        {usersList &&
-          usersList.map((eachMsg, index) => (
-            <li key={index} usclassName="messagesEntry">
-              <b>{eachMsg.userName}</b> said at {eachMsg.timeStamp}:<br />
+        {/* {console.log(`direct message list${directMessageList[2].userName}`)} */}
+        {directMessageList &&
+          directMessageList.map((eachMsg, index) => (
+            <li key={index} className="messagesEntry">
+              <b>{eachMsg.from}</b> said at {eachMsg.timestamp}:<br />
               {eachMsg.message}
             </li>
           ))}
