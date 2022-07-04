@@ -48,7 +48,7 @@ function MessageArea({ userName }) {
   ////////////////////////////////////
   //BUG//BUG//BUG//BUG//BUG//BUG//BUG//BUG
   //////// BUG //// THIS DOES NOT REFRESH IMMEDIATELY///
-  socket.on('disconnect', (userId) => {
+  socket.on('disconnect', (userID) => {
     console.log(`user ${socket.id} disconnected`);
     setUsersList(
       usersList.forEach((user) => {
@@ -84,6 +84,7 @@ function MessageArea({ userName }) {
       message: data.message,
       timeStamp: data.timestamp,
     };
+    console.log('general chat message received');
     setMessageList([...messageList, newMessage]);
     // console.log(messageList);
     // setMessage(newMessage);
@@ -128,7 +129,7 @@ function MessageArea({ userName }) {
   ////////////////////////////////////////
   // let selectedUser = usersList[0];
   ////// change selectedUser TO PROPER NAME
-  function handleDirectMessageChange(event) {
+  function handleDirectMessageChange(event, usersList) {
     setPrivateMessage(event.target.value);
   }
 
@@ -142,45 +143,57 @@ function MessageArea({ userName }) {
         to: selectedDirectChatUserID,
       });
     }
-    /////// Messages need to be pushed into the sender userList.directmessage
-    // message: content;
-    // to: selectedDirectChatUserID;
-    // from: timestamp: new Date().toLocaleTimeString();
-
+    /// Adds the message to the current user
+    // INTO usersList.directMessages
+    usersList[0].directMessages.push({
+      from: usersList[0].username,
+      message: privateMessage,
+      to: selectedDirectChatUserID,
+      timestamp: new Date().toLocaleTimeString(),
+    });
     setPrivateMessage('');
-
-    // }
   };
 
-  socket.on('direct message', ({ data, from }) => {
-    console.log(data);
-    console.log(from);
+  // socket.on('direct message', ({ data, from }) => {
+  socket.on('direct message', ({ content, from }) => {
+    const newMessage = {
+      from: content.from,
+      message: content.message,
+      timeStamp: content.timestamp,
+      to: content.to,
+    };
+
+    console.log(newMessage);
+    console.log('im catcing a message');
     // Add the direct message to both sender and receiver direct message list inside userList.
-    for (let i = 0; i < usersList.length; i++) {
-      if (usersList[i].userID === selectedDirectChatUserID) {
-        console.log(' gettign my own message');
-        // usersList[i].directMessages = [...directMessages, data];
-      } else if (usersList[i].userID === from) {
-        console.log('the message im receiving');
-        // usersList[i].directMessages = [...directMessages, data];
-      }
-    }
-    // for (let i = 0; i < this.users.length; i++) {
-    //   const user = this.users[i];
-    //   if (user.userID === from) {
-    //     user.messages.push({
-    //       data,
-    //       fromSelf: false,
-    //       timestamp: data.timestamp,
-    //     });
-    //     if (user !== this.selectedUser) {
-    //       user.hasNewMessages = true;
-    //     }
-    //     break;
-    //   }
-    // }
-    setPrivateMessage('');
+    // for (let i = 0; i < usersList.length; i++) {
+    //// This is probably un-needed as its pushed before leaving the user
+    // if (usersList[i].userID === selectedDirectChatUserID) {
+    //   console.log(' gettign my own message');
+    usersList[0].directMessages.push(content); // } else
+    // if (usersList[i].userID === from) {
+    //   console.log('the message im receiving');
+    //   usersList[i].directMessages.push(data);
+
+    // = [...usersList[i].directMessages, data];
   });
+  // }
+  // for (let i = 0; i < this.users.length; i++) {
+  //   const user = this.users[i];
+  //   if (user.userID === from) {
+  //     user.messages.push({
+  //       data,
+  //       fromSelf: false,
+  //       timestamp: data.timestamp,
+  //     });
+  //     if (user !== this.selectedUser) {
+  //       user.hasNewMessages = true;
+  //     }
+  //     break;
+  //   }
+  // }
+  // setPrivateMessage('');
+  // });
 
   ////////////// END OF DIRECT CHAT SOCKET IO logic
   //////////////////////////////////////////////////

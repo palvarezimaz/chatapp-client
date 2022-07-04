@@ -8,23 +8,24 @@ function DirectChat({ usersList, selectedUserForDirectChat, loggedUser }) {
   // console.log(usersList[0].directMessages);
   // let directMessageList = [];
   let directMessageList = usersList[0].directMessages;
-  for (let i = 0; i < usersList.length; i++) {
-    if (usersList[i].directMessages[0] !== undefined) {
-      console.log('on the right track!');
-      // console.log(`users list user 0 all direct messages ${hola}`);
-      for (let j = 0; j < usersList[i].directMessage.length; j++) {
-        if (
-          usersList[i].directMessages[j].userName === loggedUser ||
-          usersList[i].directMessages[j].userName === selectedUserForDirectChat
-        ) {
-          usersList[i].directMessageList.push(usersList[i].directMessages[j]);
-        }
-      }
-    } else {
-      console.log('direct message array is empty');
-      console.log(directMessageList);
-    }
-  }
+  // for (let i = 0; i < usersList.length; i++) {
+  //   if (usersList[i].directMessages[0] !== undefined) {
+  //     console.log('on the right track!');
+  //     // console.log(`users list user 0 all direct messages ${hola}`);
+  //     for (let j = 0; j < usersList[i].directMessage.length; j++) {
+  //       if (
+  //         usersList[i].directMessages[j].userName === loggedUser ||
+  //         usersList[i].directMessages[j].userName === selectedUserForDirectChat
+  //       ) {
+  //         usersList[i].directMessageList.push(usersList[i].directMessages[j]);
+  //       }
+  //     }
+  //   } else {
+  //     // console.log('direct message array is empty');
+  //     // console.log(usersList);
+  //     // console.log(directMessageList);
+  //   }
+  // }
   // directMessageList = [...directMessageList, usersList[0].directMessages];
   // console.log(`direct message list after pushing one ${directMessageList}`);
   // From userList
