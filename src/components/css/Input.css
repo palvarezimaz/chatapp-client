@@ -1,9 +1,4 @@
-/* .MessageInput {
-  background-color: whitesmoke;
-} */
-
 .form {
-  /* background: rgba(0, 0, 0, 0.15); */
   background: rgba(203, 77, 77, 0.15);
   padding: 0.25rem;
   position: fixed;
@@ -21,6 +16,7 @@
   flex-grow: 1;
   border-radius: 2rem;
   margin: 0.25rem;
+  height: 1.75rem;
 }
 .input:focus {
   outline: none;
@@ -30,7 +26,8 @@
   border: none;
   padding: 0 1rem;
   margin: 0.25rem;
-  border-radius: 3px;
+  border-radius: 6px;
   outline: none;
   color: #fff;
+  height: 2rem;
 }

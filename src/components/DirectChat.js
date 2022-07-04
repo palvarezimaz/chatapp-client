@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import './css/Chat.css';
 
 function DirectChat({ usersList, selectedUserForDirectChat, loggedUser }) {
@@ -29,10 +29,14 @@ function DirectChat({ usersList, selectedUserForDirectChat, loggedUser }) {
   // directMessageList = [...directMessageList, usersList[0].directMessages];
   // console.log(`direct message list after pushing one ${directMessageList}`);
   // From userList
+  const bottomRef = useRef(null);
 
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' }, [usersList]);
+  });
   return (
     <div className="Chat">
-      <h2>!!!!Direct chat!!!!!!!!</h2>
+      <h3 className="Chat-section">Direct chat</h3>
       <section className="messages">
         {/* {console.log(`direct message list${directMessageList[2].userName}`)} */}
         {directMessageList &&
@@ -43,6 +47,7 @@ function DirectChat({ usersList, selectedUserForDirectChat, loggedUser }) {
             </li>
           ))}
       </section>
+      <div ref={bottomRef} />
     </div>
   );
 }

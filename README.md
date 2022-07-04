@@ -23,3 +23,7 @@ This is served by the ChatApp Server [here](https://github.com/palvarezimaz/chat
    iv. Login options
    v. Image sharing
    vi. Gifs
+
+## Credits
+
+i. The cool CSS typed animation was taken from Brandon McConnell Codepen: https://codepen.io/brandonmcconnell/pen/bZqGdw

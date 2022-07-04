@@ -1,11 +1,12 @@
-import React, { useRef } from 'react';
-// import { Container, Form, Button } from 'react-bootstrap';
-// import Animation from './Animation';
-import './css/Login.css';
+import React, { useRef, useState } from 'react';
+import './css/Login.scss';
 import Slider from './Slider';
+import ToGitHub from './ToGitHub';
 
 function Login({ onUserNameSubmit }) {
   const userName = useRef();
+
+  const [formLabel, setFormLabel] = useState('');
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -17,24 +18,70 @@ function Login({ onUserNameSubmit }) {
     <div className="Login">
       <div className="LoginArea">
         <Slider />
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            ref={userName}
-            placeholder="Enter your username..."
-            required
-          />
+        <div className="form-class">
+          <form className="LoginForm" onSubmit={handleSubmit}>
+            <label className="form-label">
+              <span className={`label ${formLabel === 'hide' ? 'hide' : ''}`}>
+                Enter your username
+              </span>
 
-          <button type="submit" className="LoginButton">
-            Join
-          </button>
-        </form>
-        <div className="backgroundLogin"></div>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                className="form-input"
+                ref={userName}
+                required
+                onFocus={(event) => setFormLabel('hide')}
+                onBlur={(event) => setFormLabel('none')}
+              />
+            </label>
+          </form>
+        </div>
+      </div>
+      <div className="backgroundLogin"></div>
 
-        {/* <Animation /> */}
+      <div>
+        <ToGitHub />
       </div>
     </div>
   );
 }
 
 export default Login;
+
+//backup
+//   return (
+//     <div className="Login">
+//       <div className="LoginArea">
+//         <Slider />
+//         <div class="form-group has-icon fa-envelope-o">
+//           <form className="LoginForm" onSubmit={handleSubmit}>
+//             <label className="movable" for="name">
+//               Enter your username...
+//             </label>
+//             <input
+//               type="text"
+//               name="name"
+//               id="name"
+//               class="form-field required email"
+//               ref={userName}
+//               required
+//             />
+
+//             {/* <button type="submit" className="LoginButton">
+//             Join
+//           </button> */}
+//           </form>
+//         </div>
+//       </div>
+//       <div className="backgroundLogin"></div>
+
+//       <div>
+//         <ToGitHub />
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default Login;

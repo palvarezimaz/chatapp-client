@@ -1,19 +1,40 @@
+body {
+  border-radius: 4px;
+}
+
 .Chat {
-  overflow-x: hidden;
-  overflow-y: auto;
+  /* overflow-x: hidden;
+  overflow-y: scroll; */
+  /* overflow: scroll; */
   background-color: whitesmoke;
+  border-radius: 1.5rem;
+}
+
+.Chat-section {
+  margin: 0;
+  padding: 10px;
+  font-size: medium;
+  border-radius: 1.5rem;
+  text-shadow: 2px 2px rgba(116, 244, 159, 0.329);
 }
 
 .messages {
+  font-size: small;
+  background-color: whitesmoke;
   list-style-type: none;
   margin: 0;
   padding: 0;
   width: 100%;
+  margin-bottom: 3rem;
 }
 .messages > li {
   padding: 0.5rem 1rem;
   background: rgba(116, 244, 159, 0.329);
+  border-radius: 1.5rem;
+  margin: 1px;
 }
 .messages > li:nth-child(odd) {
   background: rgb(255, 255, 255);
+  border-radius: 1.5rem;
+  margin: 1px;
 }

@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import './css/Chat.css';
 
 // import socket from '../socket';
 
 function Chat({ messageList }) {
+  const bottomRef = useRef(null);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' }, [messageList]);
+  });
   return (
     <div className="Chat">
       <section className="messages">
-        <h3>General Chat</h3>
+        <h3 className="Chat-section">General Chat</h3>
         {messageList &&
           messageList.map((eachMsg, index) => (
             <li key={index} className="messagesEntry">
@@ -16,6 +21,7 @@ function Chat({ messageList }) {
             </li>
           ))}
       </section>
+      <div ref={bottomRef} />
     </div>
   );
 }
