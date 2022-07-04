@@ -7,7 +7,11 @@ function ToGitHub() {
       <span className="Disclaimer"></span>
       <br />
 
-      <a href="https://github.com/palvarezimaz/chatapp-server" target="_blank">
+      <a
+        href="https://github.com/palvarezimaz/chatapp-server"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <img src={Github} alt="github"></img>
       </a>
     </div>
