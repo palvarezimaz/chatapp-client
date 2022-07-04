@@ -4,9 +4,12 @@
 }
 
 .text-left {
-  font-family: 'Franklin Gothic Medium';
+  font-family: 'VT323', monospace, sans-serif;
+  /* font-family: 'Franklin Gothic Medium'; */
   /* font-family: 'arial black'; */
   color: green;
+  text-shadow: 0 0 5px rgba(51, 255, 51, 0.75);
+  font-style: oblique;
   font-size: 100px;
   text-align: center;
   padding: 0;
@@ -17,6 +20,7 @@
   opacity: 0;
   animation: slide-in-anim-left 2.5s ease-out forwards;
   z-index: 1;
+  animation-delay: 0.5s;
 }
 
 @keyframes slide-in-anim-left {
@@ -42,17 +46,21 @@
 }
 
 .text-right {
-  font-family: 'arial black';
+  font-family: 'VT323', monospace, sans-serif;
+  font-weight: 800;
+  font-size: 50%;
   color: green;
+  /* text-shadow: 0 0 5px rgba(51, 255, 51, 0.75); */
   font-size: 100px;
   text-align: center;
   padding: 0;
   margin-top: -40px;
-  margin-left: 55%;
+  margin-left: 50%;
   transform: translateX(-400%);
   opacity: 0;
   animation: slide-in-anim-right 2.5s ease-out forwards;
   z-index: 1;
+  animation-delay: 1s;
 }
 
 @keyframes slide-in-anim-right {
@@ -69,4 +77,13 @@
     opacity: 1;
     transform: translateX(-50%);
   }
+}
+
+/* //// Shine */
+p {
+  background: linear-gradient(90deg, green, rgba(153, 226, 153, 0.927), green);
+  background-repeat: no-repeat;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0);
 }

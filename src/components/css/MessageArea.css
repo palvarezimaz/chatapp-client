@@ -1,7 +1,33 @@
-/* body {
+body {
   background-color: whitesmoke;
-} */
+  border-radius: 4px;
+  font-family: 'VT323', monospace, sans-serif;
+}
 
+.MessageArea-Title {
+  background-color: #0f7e53;
+  color: white;
+  margin: 0;
+  text-align: left;
+  padding: 10px 0px 10px 30px;
+  border-bottom: #3f3 1px solid;
+}
+
+.Chat-name {
+  font-style: oblique;
+}
+
+.App-name {
+  font-weight: 800;
+}
+
+.Welcome-message {
+  background-color: #0f7e53;
+  color: white;
+  margin: 0;
+  text-align: center;
+  padding: 5px;
+}
 .side-panel {
   position: fixed;
   right: 0;
@@ -11,15 +37,35 @@
   overflow-x: hidden;
   /* overflow-y: hidden; */
   padding: 10px;
-  background-color: #0f7e53;
+  /* background-color: #0f7e53; */
+  background-image: linear-gradient(#0f7e53, #1c9667);
   color: white;
+  list-style-type: none;
+  border-left: #3f3 1px solid;
 }
 
 .message-area {
-  /* background-color: whitesmoke; */
-  /* position: fixed; */
   margin-right: 25%;
   width: 75%;
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+.MessageArea-Title-Sidebar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-size: larger;
+  color: white;
+  margin: 0;
+  text-align: left;
+  padding: 10px 0px 15px 10px;
+}
+
+.Chat-name-sidebar {
+  font-style: oblique;
+}
+
+.App-name-sidebar {
+  font-weight: 800;
 }

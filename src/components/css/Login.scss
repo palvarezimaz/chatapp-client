@@ -1,0 +1,101 @@
+/* .Login {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+} */
+
+.LoginArea {
+  color: green;
+  text-align: center;
+  align-items: center;
+}
+
+.backgroundLogin {
+  position: fixed;
+  padding: 0;
+  margin: 0;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0);
+  z-index: -1;
+  animation: slide-in-anim-bottom 1s;
+}
+
+@keyframes slide-in-anim-bottom {
+  0% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+/* //////// */
+form {
+  text-align: center;
+  align-items: center;
+  animation: form-appearing 400ms;
+  // animation-delay: 300ms;
+}
+
+@keyframes form-appearing {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.form-label {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+}
+
+.label {
+  font-size: 16px;
+  font-family: 'VT323', monospace, sans-serif;
+  font-size: 16px;
+  line-height: 16px;
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.25s ease;
+  // align-items: center;
+  pointer-events: none;
+}
+
+label.form-label {
+  display: inline;
+  font-size: 16px;
+  line-height: 16px;
+  font-family: 'VT323', monospace, sans-serif;
+  font-size: 16px;
+}
+
+.form-input {
+  font-family: 'VT323', monospace, sans-serif;
+  height: 30px;
+  width: 220px;
+  padding: 8px 4px;
+  font-size: 18px;
+  align-items: center;
+  display: inline;
+  color: green;
+}
+.hide {
+  top: -15px;
+  left: 0;
+  font-size: 12px;
+  pointer-events: all;
+}
