@@ -87,6 +87,8 @@ function MessageArea({ userName }) {
   const [selectedDirectChatUserID, setSelectedDirectChatUserID] =
     useState(null);
 
+  const [directMessageList, setDirectMessageList] = useState([]);
+
   function userForDirectChat(index) {
     if (usersList[index].username !== loggedUser) {
       let directChatUserName = usersList[index].username;
@@ -131,41 +133,56 @@ function MessageArea({ userName }) {
       });
     }
     /// Adds the message to the current user
-    // INTO usersList.directMessages
-    usersList[0].directMessages.push({
-      from: usersList[0].username,
-      message: privateMessage,
-      to: selectedDirectChatUserID,
-      timestamp: new Date().toLocaleTimeString(),
-    });
+    setDirectMessageList([
+      ...directMessageList,
+      {
+        from: usersList[0].username,
+        message: privateMessage,
+        to: selectedDirectChatUserID,
+        timestamp: new Date().toLocaleTimeString(),
+        self: true,
+      },
+    ]);
     setPrivateMessage('');
   };
 
-  function hola(msg) {
-    const usersChat = usersList;
-    console.log(`new direct message ${msg}`);
-
-    usersChat.map((element) => console.log(element.directMessages));
-    // console.log(`hola func ${usersChat[0].userName}`);
-    // usersChat[0].directMessages.push(msg);
-    // console.log(`hola func ${usersChat[0][0]}`);
-    // setUsersList([...usersList[0].directMessages, msg]);
-
-    // usersList[0].directMessages.push(msg);
-    // = [...directMessages, msg];
-    // console.log(usersList[0].
-  }
+  // const newDirectMessageList = usersList.map((element) => {
+  //   if (element.userID === msg.to) {
+  //     element.directMessages = [...element.directMessages, msg];
+  //   }
+  // });
+  // setUsersList(newDirectMessageList);
+  ///////////////////////////
+  // console.log(`hola func ${usersChat[0].userName}`);
+  // usersChat[0].directMessages.push(msg);
+  // console.log(`hola func ${usersChat[0][0]}`);
+  // setUsersList([...usersList[0].directMessages, msg]);
+  // usersList[0].directMessages.push(msg);
+  // = [...directMessages, msg];
+  // console.log(usersList[0].
 
   // socket.on('direct message', ({ data, from }) => {
   socket.on('direct message', (content) => {
+    // console.log(content);
     const newMessage = {
       from: content.from,
       message: content.message,
       timeStamp: content.timestamp,
       to: content.to,
+      self: false,
     };
-    hola(newMessage);
-    console.log('im catcing a message');
+
+    // setDirectMessageList.push(newMessage);
+    // console.log(directMessageList);
+
+    setDirectMessageList([...directMessageList, newMessage]);
+    console.log(directMessageList);
+    // };
+    // console.log(`im catcing a message ${newMessage}`);
+
+    // console.log(`to ${newMessage.to}`);
+    // console.log(`newDM ${newDM.directMessages}`);
+    // newDM.directMessages.push(newMessage);
   });
 
   /////////////////////
@@ -251,6 +268,7 @@ function MessageArea({ userName }) {
             usersList={usersList}
             selectedUserForDirectChat={selectedUserForDirectChat}
             loggedUser={loggedUser}
+            directMessageList={directMessageList}
           />
         )}
         {selectedUserForDirectChat === null ? (

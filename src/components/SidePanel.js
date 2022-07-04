@@ -2,8 +2,8 @@ import React from 'react';
 import './css/SidePanel.css';
 import RemoveUser from './RemoveUser';
 
-function SidePanel({ usersList, rooms, userForDirectChat }) {
-  console.log(`side panel userlist: ${usersList.map((user) => user.username)}`);
+function SidePanel({ usersList, userForDirectChat }) {
+  // useEffect();
   return (
     <div className="SidePanel">
       <div className="ConnectedUsersBox">
@@ -12,12 +12,12 @@ function SidePanel({ usersList, rooms, userForDirectChat }) {
           usersList.map((user, index) => (
             <li
               key={index}
-              className="eachUser"
+              className={`eachUser ${
+                user.hasNewMessages ? ' new-direct-messages' : 'x'
+              }`}
               onClick={() => userForDirectChat(index)}
             >
               {user.username}
-
-              {user.hasNewMessages === true ? ' !!' : ' x'}
             </li>
           ))}
       </div>
