@@ -2,7 +2,9 @@
 
 ## Project description
 
-A proof of concept real-time message app using React as a Front end, Express and PostgreSQL as a Back end, servead by Socket.io as a websocket implementation
+A proof of concept real-time message app using React as Front end and Express as Back end, served by Socket.io as a websocket implementation.
+
+See the app [here](https://paichatapp.herokuapp.com/)
 
 This is served by the ChatApp Server [here](https://github.com/palvarezimaz/chatapp-server).
 
