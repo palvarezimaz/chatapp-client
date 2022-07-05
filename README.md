@@ -28,6 +28,10 @@ You can find every file to run this app in the above mentioned repo.
    v. Image sharing
    vi. Gifs
 
+## Commentaries, bugs and design flaws
+
+Building an app using WebSockets (Socket.io) in a week was a beautiful challenge at this stage of my carrer. It was indeed a way to dive into something quite new (what they usually call leave the comfort zone, although there were few comfortable spots left besides CSS and vanilla JS)
+
 ## Credits
 
 i. Socket.io creators.
