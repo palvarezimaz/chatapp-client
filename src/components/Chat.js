@@ -1,8 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import './css/Chat.css';
 
-// import socket from '../socket';
-
 function Chat({ messageList }) {
   const bottomRef = useRef(null);
 

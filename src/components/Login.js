@@ -49,39 +49,3 @@ function Login({ onUserNameSubmit }) {
 }
 
 export default Login;
-
-//backup
-//   return (
-//     <div className="Login">
-//       <div className="LoginArea">
-//         <Slider />
-//         <div class="form-group has-icon fa-envelope-o">
-//           <form className="LoginForm" onSubmit={handleSubmit}>
-//             <label className="movable" for="name">
-//               Enter your username...
-//             </label>
-//             <input
-//               type="text"
-//               name="name"
-//               id="name"
-//               class="form-field required email"
-//               ref={userName}
-//               required
-//             />
-
-//             {/* <button type="submit" className="LoginButton">
-//             Join
-//           </button> */}
-//           </form>
-//         </div>
-//       </div>
-//       <div className="backgroundLogin"></div>
-
-//       <div>
-//         <ToGitHub />
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Login;

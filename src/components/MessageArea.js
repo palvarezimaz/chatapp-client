@@ -8,7 +8,7 @@ import SidePanel from './SidePanel';
 import socket from '../socket';
 import RemoveUser from './RemoveUser';
 import UIfx from 'uifx';
-import icqAudio from './Icq.mp3';
+import icqAudio from './sounds/Icq.mp3';
 
 const icq = new UIfx(icqAudio);
 
@@ -63,7 +63,6 @@ function MessageArea({ userName }) {
     if (message !== '') {
       socket.emit('chat message', message);
       setMessage('');
-      icq.play(0.5);
     }
   };
 
@@ -73,11 +72,9 @@ function MessageArea({ userName }) {
       message: data.message,
       timestamp: data.timestamp,
     };
-    console.log('general chat message received');
+
     setMessageList([...messageList, newMessage]);
-    // console.log(messageList);
-    // setMessage(newMessage);
-    // console.log(message, loggedUser);
+    icq.play(0.2);
   });
   ////////////////////////////////////////////
   /////////////// Direct messaging //////////
@@ -99,30 +96,26 @@ function MessageArea({ userName }) {
       let directChatUserID = usersList[index].userID;
 
       setSelectedUserForDirectChat(directChatUserName);
-      console.log(directChatUserName);
+
       setSelectedDirectChatUserID(directChatUserID);
-      console.log(directChatUserID);
-      // `Direct message to "${selectedUserForDirectChat}"`
 
       console.log(directChatUserID);
       console.log(`Selected user for direct chat${selectedUserForDirectChat}`);
     } else {
       console.log('no self messaging... yet!');
     }
-    // setSelectedUserForDirectChat(x);
+    //
     console.log(selectedUserForDirectChat);
-    // usersList[indexOfUser].username;
   }
 
   const removeDirectChatUser = () => setSelectedUserForDirectChat(null);
-  // setSelectedDirectChatUserID(null);
+
   ///// SELECT USER
 
   ////////////////////////////////////////
   /// Direct messages implementation /////
   ////////////////////////////////////////
-  // let selectedUser = usersList[0];
-  ////// change selectedUser TO PROPER NAME
+
   function handleDirectMessageChange(event, usersList) {
     setPrivateMessage(event.target.value);
   }
@@ -151,24 +144,7 @@ function MessageArea({ userName }) {
     setPrivateMessage('');
   };
 
-  // const newDirectMessageList = usersList.map((element) => {
-  //   if (element.userID === msg.to) {
-  //     element.directMessages = [...element.directMessages, msg];
-  //   }
-  // });
-  // setUsersList(newDirectMessageList);
-  ///////////////////////////
-  // console.log(`hola func ${usersChat[0].userName}`);
-  // usersChat[0].directMessages.push(msg);
-  // console.log(`hola func ${usersChat[0][0]}`);
-  // setUsersList([...usersList[0].directMessages, msg]);
-  // usersList[0].directMessages.push(msg);
-  // = [...directMessages, msg];
-  // console.log(usersList[0].
-
-  // socket.on('direct message', ({ data, from }) => {
   socket.on('direct message', (content) => {
-    // console.log(content);
     const newMessage = {
       from: content.from,
       message: content.message,
@@ -177,62 +153,9 @@ function MessageArea({ userName }) {
       self: false,
     };
 
-    // setDirectMessageList.push(newMessage);
-    // console.log(directMessageList);
-
     setDirectMessageList([...directMessageList, newMessage]);
     console.log(directMessageList);
-    // };
-    // console.log(`im catcing a message ${newMessage}`);
-
-    // console.log(`to ${newMessage.to}`);
-    // console.log(`newDM ${newDM.directMessages}`);
-    // newDM.directMessages.push(newMessage);
   });
-
-  /////////////////////
-  // setUsersList([...usersList[0].directMessages[0], newMessage]);
-  // console.log(newMessage);
-  // console.log(usersList);
-  // hola(newMessage, usersList);
-  // hola(usersList[0].directMessages);
-  //
-
-  //// Check its use
-  // const onSelectUser = (user) => {
-  //   selectedUser = user;
-  //   user.hasNewMessages = false;
-  // };
-
-  // Add the direct message to both sender and receiver direct message list inside userList.
-  // for (let i = 0; i < usersList.length; i++) {
-  //// This is probably un-needed as its pushed before leaving the user
-  // if (usersList[i].userID === selectedDirectChatUserID) {
-  //   console.log(' gettign my own message');
-  // usersList[0].directMessages.push(content); // } else
-  // if (usersList[i].userID === from) {
-  //   console.log('the message im receiving');
-  //   usersList[i].directMessages.push(data);
-
-  // = [...usersList[i].directMessages, data];
-
-  // }
-  // for (let i = 0; i < this.users.length; i++) {
-  //   const user = this.users[i];
-  //   if (user.userID === from) {
-  //     user.messages.push({
-  //       data,
-  //       fromSelf: false,
-  //       timestamp: data.timestamp,
-  //     });
-  //     if (user !== this.selectedUser) {
-  //       user.hasNewMessages = true;
-  //     }
-  //     break;
-  //   }
-  // }
-  // setPrivateMessage('');
-  // });
 
   ////////////// END OF DIRECT CHAT SOCKET IO logic
   //////////////////////////////////////////////////
@@ -240,10 +163,10 @@ function MessageArea({ userName }) {
 
   ////////////////////////
 
-  const sendMessage2 = (userName) => {
-    socket.emit('Welcome Message', loggedUser);
-    // socket.on('Welcome Message', name => {} )
-  };
+  // const sendMessage2 = (userName) => {
+  //   socket.emit('Welcome Message', loggedUser);
+  //   // socket.on('Welcome Message', name => {} )
+  // };
 
   return (
     <>
@@ -295,75 +218,3 @@ function MessageArea({ userName }) {
 }
 
 export default MessageArea;
-
-////////// DISCONNECTION
-///////////// DOUBLE CHECK
-
-/* <button >Future Disconnect</button> */
-
-// socket.on('disconnect', (users) => {
-//   users.forEach((user) => {
-//     if (user.self) {
-//       user.connected = false;
-//     }
-//   });
-//   setUsersList(users);
-// });
-// socket.on('user disconnected', (users, id) => {
-//   for (let i = 0; i < this.users.length; i++) {
-//     const user = users[i];
-//     if (user.userID === id) {
-//       user.connected = false;
-//       break;
-//     }
-//     setUsersList(users);
-//   }
-// });
-// //////// DOUBLE CHECK
-// const disconnectUser = (userName) => {
-//   socket.on('disconnect', (users) => {
-//     users.forEach((user) => {
-//       if (user.self) {
-//         user.connected = false;
-//       }
-//     });
-//     setUsersList(users);
-//   });
-//   socket.on('user disconnected', (users, id) => {
-//     for (let i = 0; i < this.users.length; i++) {
-//       const user = users[i];
-//       if (user.userID === id) {
-//         user.connected = false;
-//         break;
-//       }
-//       setUsersList(users);
-//     }
-//     userName.setState(null);
-//   });
-// };
-
-//////////////////////////////////// DISCONNECTION CLIENT SIDE LOGIC --- NOT NEEDED????
-
-// IM HANDLING IT SERVERSIDE
-//BUG//BUG//BUG//BUG//BUG//BUG//BUG//BUG
-//////// BUG //// THIS DOES NOT REFRESH IMMEDIATELY///
-// socket.on('disconnect', (userID) => {
-//   let discoUsers = usersList.filter((user) => user.userID !== socket.id);
-//   setUsersList(discoUsers);
-//   // let users = users.filter((user) => user.userID !== socket.id);
-//   // setUsersList(users);
-//   // // console.log(users);
-//   console.log(`client user ${socket.id} disconnected`);
-//   console.log(
-//     `side panel userlist: ${usersList.map((user) => user.username)}`
-//   );
-// setUsersList(
-//   usersList.forEach((user) => {
-//     if (user.userID === socket.id) {
-//       user.connected = false;
-//       user.username = 'disconnected';
-//     }
-//   })
-// );X
-// socket.emit('disconnect', usersList);
-// });

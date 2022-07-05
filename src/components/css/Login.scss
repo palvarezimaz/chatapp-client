@@ -38,19 +38,21 @@
 }
 
 /* //////// */
-form {
+.LoginForm {
   text-align: center;
   align-items: center;
-  animation: form-appearing 400ms;
-  // animation-delay: 300ms;
+  // animation-delay: 4s;
+  animation: form-appearing 10s;
 }
 
 @keyframes form-appearing {
   0% {
     opacity: 0;
+    // transform: translateY(100%);
   }
   100% {
     opacity: 1;
+    // transform: translateY(45%);
   }
 }
 

@@ -3,7 +3,6 @@ import './css/SidePanel.css';
 import RemoveUser from './RemoveUser';
 
 function SidePanel({ usersList, userForDirectChat }) {
-  // useEffect();
   return (
     <div className="SidePanel">
       <div className="ConnectedUsersBox">
