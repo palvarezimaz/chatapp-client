@@ -24,7 +24,7 @@ As a POC, the general approach was to give an overview to the documentation.
 ## How it looks
 
 This is the CSS animated landing page:
-![Landing page screenshot](./chatapp_landing_page.jng)
+![Landing page screenshot](./chatapp_landing_page.png)
 
 ## Tech Stack
 
