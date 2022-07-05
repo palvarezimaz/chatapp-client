@@ -93,6 +93,7 @@ function MessageArea({ userName }) {
     if (usersList[index].username !== loggedUser) {
       let directChatUserName = usersList[index].username;
       let directChatUserID = usersList[index].userID;
+      usersList[index].hasNewMessage = false;
 
       setSelectedUserForDirectChat(directChatUserName);
 
@@ -145,14 +146,16 @@ function MessageArea({ userName }) {
   socket.on('direct message', (content) => {
     const newMessage = {
       from: content.from,
+      toName: loggedUser,
       message: content.message,
-      timeStamp: content.timestamp,
+      timestamp: content.timestamp,
       to: content.to,
       self: false,
+      hasNewMessage: true,
     };
     setDirectMessageList([...directMessageList, newMessage]);
 
-    icq.play(0.2);
+    // icq.play(0.2);
     // }
   });
 

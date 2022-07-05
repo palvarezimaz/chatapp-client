@@ -1,11 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './css/Chat.css';
+import UIfx from 'uifx';
+import icqAudio from './sounds/Icq.mp3';
+
+const icq = new UIfx(icqAudio);
 
 function DirectChat({
   selectedUserForDirectChat,
   loggedUser,
   directMessageList,
 }) {
+  const [counter, setCounter] = useState(0);
   const bottomRef = useRef(null);
 
   useEffect(() => {
@@ -13,6 +18,12 @@ function DirectChat({
       directMessageList,
     ]);
   });
+
+  if (counter <= directMessageList.length) {
+    setCounter(directMessageList.length + 1);
+
+    icq.play(0.2);
+  }
 
   //// Trying to filter by to and from only
   // const tempList = [];
@@ -36,7 +47,7 @@ function DirectChat({
         {directMessageList &&
           directMessageList.map((eachMsg, index) => (
             <li key={index} className="messagesEntry">
-              <b>{eachMsg.from}</b> said to <b>{eachMsg.toName}</b> at
+              <b>{eachMsg.from}</b> said to <b>{eachMsg.toName}</b> at{' '}
               {eachMsg.timestamp}:<br />
               {eachMsg.message}
             </li>
