@@ -12,7 +12,7 @@ You can find every file to run this app in the above mentioned repo.
 
 ### General Approach
 
-As a POC, the general approach was to give an overview to the documentation.
+As a POC, the general approach was to fist give an overview to the documentation of both React and Socket.io, as they were, at the time, new technologies for me. Afterwards, I drafted a development plan, which tried to be as down to earth as possible. Considering that I only had a (busy) week to get the job done, I design a POC App with basic but working functionalities.
 
 ### Key features
 
@@ -78,9 +78,15 @@ For development, mind that the client runs through PORT 3000 and the server (ser
 
 ## Conclusion: commentaries, bugs and design flaws
 
-Building an app using WebSockets (Socket.io) in a week was a beautiful challenge at this stage of my carrer. It was indeed a way to dive into something quite new (what they usually call leave the comfort zone, although there were few comfortable spots left besides CSS and vanilla JS)
+Building an app using WebSockets (Socket.io) in a week was a beautiful challenge at this stage of my carrer. It was indeed a way to dive into something quite new (what they usually call leave the comfort zone, although there were few comfortable spots left besides CSS and vanilla JS).
 
-More soon
+The main reflextion after this experience is that it was an amazing road in which I learned a lot about Front-Back communications.
+
+Having achieved the first milestone (a general chat) and while working on the second main feature (private messaging), I realized that my App had a design flaw.
+
+In the beginning, I was hoping to use a DB to store some critical data for the APP operation. However, due to the time and skills constrains, I put most of the weight of the logical operations on the Front end (hoping to get it done quicker) instead of writing it on the Express server and, eventually, into the server.
+
+In the end, this proved to be a major problem as I had a number of roadblocks when utilizing the data transmitted through the socket. This showed me the limitations of my approach. More than a loss, I believe this was a gain in insight on the importance of having enough time to gather enough information before sitting down in the drawing board of app design.
 
 ## Upcoming features
 
