@@ -74,7 +74,6 @@ function MessageArea({ userName }) {
     };
 
     setMessageList([...messageList, newMessage]);
-    icq.play(0.2);
   });
   ////////////////////////////////////////////
   /////////////// Direct messaging //////////
@@ -105,7 +104,6 @@ function MessageArea({ userName }) {
       console.log('no self messaging... yet!');
     }
     //
-    console.log(selectedUserForDirectChat);
   }
 
   const removeDirectChatUser = () => setSelectedUserForDirectChat(null);
@@ -152,17 +150,17 @@ function MessageArea({ userName }) {
       to: content.to,
       self: false,
     };
-
     setDirectMessageList([...directMessageList, newMessage]);
-    console.log(directMessageList);
+
+    icq.play(0.2);
+    // }
   });
 
   ////////////// END OF DIRECT CHAT SOCKET IO logic
-  //////////////////////////////////////////////////
-  //////////////////////////////////////////////////
+  /////////////////////////////////////////
+  /////////////////////////////////////////
 
-  ////////////////////////
-
+  //// FUTURE DEVELOPMENT
   // const sendMessage2 = (userName) => {
   //   socket.emit('Welcome Message', loggedUser);
   //   // socket.on('Welcome Message', name => {} )

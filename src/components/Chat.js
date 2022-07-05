@@ -11,6 +11,7 @@ function Chat({ messageList }) {
     <div className="Chat">
       <section className="messages">
         <h3 className="Chat-section">General Chat</h3>
+
         {messageList &&
           messageList.map((eachMsg, index) => (
             <li key={index} className="messagesEntry">

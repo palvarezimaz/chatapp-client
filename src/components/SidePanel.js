@@ -12,7 +12,7 @@ function SidePanel({ usersList, userForDirectChat }) {
             <li
               key={index}
               className={`eachUser ${
-                user.hasNewMessages === true ? ' new-direct-messages' : ''
+                user.self === false ? ' new-direct-messages' : ''
               }`}
               onClick={() => userForDirectChat(index)}
             >
