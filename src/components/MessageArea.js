@@ -7,10 +7,6 @@ import DirectChat from './DirectChat';
 import SidePanel from './SidePanel';
 import socket from '../socket';
 import RemoveUser from './RemoveUser';
-import UIfx from 'uifx';
-import icqAudio from './sounds/Icq.mp3';
-
-const icq = new UIfx(icqAudio);
 
 function MessageArea({ userName }) {
   const loggedUser = userName;
@@ -74,6 +70,7 @@ function MessageArea({ userName }) {
     };
 
     setMessageList([...messageList, newMessage]);
+    // icq.play(0.2);
   });
   ////////////////////////////////////////////
   /////////////// Direct messaging //////////
@@ -98,9 +95,6 @@ function MessageArea({ userName }) {
       setSelectedUserForDirectChat(directChatUserName);
 
       setSelectedDirectChatUserID(directChatUserID);
-
-      console.log(directChatUserID);
-      console.log(`Selected user for direct chat${selectedUserForDirectChat}`);
     } else {
       console.log('no self messaging... yet!');
     }
@@ -154,9 +148,6 @@ function MessageArea({ userName }) {
       hasNewMessage: true,
     };
     setDirectMessageList([...directMessageList, newMessage]);
-
-    // icq.play(0.2);
-    // }
   });
 
   ////////////// END OF DIRECT CHAT SOCKET IO logic

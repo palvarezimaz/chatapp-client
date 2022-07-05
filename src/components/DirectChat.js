@@ -10,7 +10,7 @@ function DirectChat({
   loggedUser,
   directMessageList,
 }) {
-  const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState(1);
   const bottomRef = useRef(null);
 
   useEffect(() => {

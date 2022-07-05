@@ -1,4 +1,4 @@
-# ChatApp - Client
+# ChatApp - Client - Project 4
 
 ## Project description
 
@@ -7,6 +7,8 @@ A proof of concept real-time message app using React as Front end and Express as
 See the app [here](https://paichatapp.herokuapp.com/)
 
 This is served by the ChatApp Server [here](https://github.com/palvarezimaz/chatapp-server).
+
+You can find every file to run this app in the above mentioned repo.
 
 ## Development plan
 
@@ -28,4 +30,6 @@ This is served by the ChatApp Server [here](https://github.com/palvarezimaz/chat
 
 ## Credits
 
-i. The cool CSS typed animation was taken from Brandon McConnell Codepen: https://codepen.io/brandonmcconnell/pen/bZqGdw
+i. Socket.io creators.
+ii. The cool CSS typed animation was taken from Brandon McConnell Codepen: https://codepen.io/brandonmcconnell/pen/bZqGdw
+iii. All and every one that make the Internet the one true Forum of the XXIth Century

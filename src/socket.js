@@ -6,8 +6,9 @@ if (process.env.NODE_ENV === 'production') {
 }
 const socket = io(URL, { autoConnect: false });
 
-socket.onAny((event, ...args) => {
-  console.log(event, args);
-});
+////// UNCOMMENT FOR DEVELOPMENT - LOGS ANY SOCKET EVENT
+// socket.onAny((event, ...args) => {
+//   console.log(event, args);
+// });
 
 export default socket;
