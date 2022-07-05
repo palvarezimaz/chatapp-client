@@ -1,7 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './css/Chat.css';
 
-function DirectChat({ directMessageList }) {
+function DirectChat({
+  selectedUserForDirectChat,
+  loggedUser,
+  directMessageList,
+}) {
   const bottomRef = useRef(null);
 
   useEffect(() => {
@@ -9,15 +13,31 @@ function DirectChat({ directMessageList }) {
       directMessageList,
     ]);
   });
+
+  //// Trying to filter by to and from only
+  // const tempList = [];
+  // const [individualList, setIndividualList] = useState([]);
+
+  // const makeList = () => {
+  //   directMessageList.forEach((message) => {
+  //     if (message.from === loggedUser) {
+  //       tempList.push(message);
+  //     } else if (message.toName === selectedUserForDirectChat)
+  //       tempList.push(message);
+  //   });
+  //   setIndividualList([...individualList, ...tempList]);
+  // };
+
   return (
     <div className="Chat">
       <h3 className="Chat-section">Direct chat</h3>
+      {/* if this doesn't work, change lines 37-38 with directMessageList || individualList*/}
       <section className="messages">
-        {/* {console.log(`direct message list${directMessageList[2].userName}`)} */}
         {directMessageList &&
           directMessageList.map((eachMsg, index) => (
             <li key={index} className="messagesEntry">
-              <b>{eachMsg.from}</b> said at {eachMsg.timestamp}:<br />
+              <b>{eachMsg.from}</b> said to <b>{eachMsg.toName}</b> at
+              {eachMsg.timestamp}:<br />
               {eachMsg.message}
             </li>
           ))}
@@ -28,32 +48,3 @@ function DirectChat({ directMessageList }) {
 }
 
 export default DirectChat;
-
-/////////////
-// const hola = { userName: 'jaimito', timeStamp: 'now', message: 'test' };
-// // console.log(hola);
-// usersList[0].directMessages = [...usersList[0].directMessages, hola];
-// console.log(usersList[0].directMessages);
-// let directMessageList = [];
-// let directMessageList = usersList[0].directMessages;
-// for (let i = 0; i < usersList.length; i++) {
-//   if (usersList[i].directMessages[0] !== undefined) {
-//     console.log('on the right track!');
-//     // console.log(`users list user 0 all direct messages ${hola}`);
-//     for (let j = 0; j < usersList[i].directMessage.length; j++) {
-//       if (
-//         usersList[i].directMessages[j].userName === loggedUser ||
-//         usersList[i].directMessages[j].userName === selectedUserForDirectChat
-//       ) {
-//         usersList[i].directMessageList.push(usersList[i].directMessages[j]);
-//       }
-//     }
-//   } else {
-//     // console.log('direct message array is empty');
-//     // console.log(usersList);
-//     // console.log(directMessageList);
-//   }
-// }
-// directMessageList = [...directMessageList, usersList[0].directMessages];
-// console.log(`direct message list after pushing one ${directMessageList}`);
-// From userList

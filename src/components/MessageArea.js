@@ -66,7 +66,7 @@ function MessageArea({ userName }) {
     const newMessage = {
       userName: data.username,
       message: data.message,
-      timeStamp: data.timestamp,
+      timestamp: data.timestamp,
     };
     console.log('general chat message received');
     setMessageList([...messageList, newMessage]);
@@ -139,6 +139,7 @@ function MessageArea({ userName }) {
         from: usersList[0].username,
         message: privateMessage,
         to: selectedDirectChatUserID,
+        toName: selectedUserForDirectChat,
         timestamp: new Date().toLocaleTimeString(),
         self: true,
       },
