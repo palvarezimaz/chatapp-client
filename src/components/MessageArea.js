@@ -7,6 +7,10 @@ import DirectChat from './DirectChat';
 import SidePanel from './SidePanel';
 import socket from '../socket';
 import RemoveUser from './RemoveUser';
+import UIfx from 'uifx';
+import icqAudio from './Icq.mp3';
+
+const icq = new UIfx(icqAudio);
 
 function MessageArea({ userName }) {
   const loggedUser = userName;
@@ -59,6 +63,7 @@ function MessageArea({ userName }) {
     if (message !== '') {
       socket.emit('chat message', message);
       setMessage('');
+      icq.play(0.5);
     }
   };
 
@@ -73,7 +78,6 @@ function MessageArea({ userName }) {
     // console.log(messageList);
     // setMessage(newMessage);
     // console.log(message, loggedUser);
-    setMessage('');
   });
   ////////////////////////////////////////////
   /////////////// Direct messaging //////////

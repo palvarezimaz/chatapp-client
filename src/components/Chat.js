@@ -16,7 +16,7 @@ function Chat({ messageList }) {
         {messageList &&
           messageList.map((eachMsg, index) => (
             <li key={index} className="messagesEntry">
-              <b>{eachMsg.userName}</b> said at {eachMsg.timeStamp}:<br />
+              <b>{eachMsg.userName}</b> said at {eachMsg.timestamp}:<br />
               {eachMsg.message}
             </li>
           ))}

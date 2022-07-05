@@ -13,7 +13,7 @@ function SidePanel({ usersList, userForDirectChat }) {
             <li
               key={index}
               className={`eachUser ${
-                user.hasNewMessages ? ' new-direct-messages' : 'x'
+                user.hasNewMessages === true ? ' new-direct-messages' : ''
               }`}
               onClick={() => userForDirectChat(index)}
             >
@@ -21,7 +21,7 @@ function SidePanel({ usersList, userForDirectChat }) {
             </li>
           ))}
       </div>
-      {/* <div className="RoomsBox">
+      {/* FUTURE DEVELOPMENT <div className="RoomsBox">
         <h4>Private Messages or Rooms</h4>
         {rooms &&
           rooms.map((room, index) => (
