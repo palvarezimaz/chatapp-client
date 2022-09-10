@@ -6,7 +6,7 @@ function SidePanel({ usersList, userForDirectChat }) {
   return (
     <div className="SidePanel">
       <div className="ConnectedUsersBox">
-        <h3>Connected users</h3>
+        <h3>Users</h3>
         {usersList &&
           usersList.map((user, index) => (
             <li
@@ -30,13 +30,13 @@ function SidePanel({ usersList, userForDirectChat }) {
           ))}
       </div> */}
       <div>
-        <h3>Direct message</h3>
+        <h3>DM</h3>
         <h3>
           <RemoveUser />
         </h3>
         <h4 className="MessageArea-Title-Sidebar">
-          <span className="Chat-name-sidebar">Chat</span>
-          <span className="App-name-sidebar">App</span>
+          {/* <span className="Chat-name-sidebar">Chat</span>
+          <span className="App-name-sidebar">App</span> */}
         </h4>
       </div>
     </div>
