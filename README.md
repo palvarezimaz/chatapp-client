@@ -54,7 +54,7 @@ This project uses:
 
 - To install and deploy in production:
 
-1. Clone the [server](https://github.com/palvarezimaz/chatapp-server){:target='\_blank'}
+1. Clone the [server](https://github.com/palvarezimaz/chatapp-server)
 2. Run `npm i` to install all the dependancies
 3. Deploy to your favourite service.
 
@@ -104,3 +104,7 @@ While I consider that the POC has been satisfactory, It would be nice to:
 i. Socket.io creators.
 ii. The cool CSS typed animation was taken from Brandon McConnell Codepen: https://codepen.io/brandonmcconnell/pen/bZqGdw
 iii. All and every one that make the Internet the one true Forum of the XXIth Century
+
+## Licence
+
+This app was created for educational purposes as Project 4 (final project) for the GA Software Engineer Immersive course, cohort #53 (2022), under the <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License.</p>
