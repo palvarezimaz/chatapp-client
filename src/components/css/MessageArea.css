@@ -35,9 +35,7 @@ body {
   bottom: 0;
   width: 25%;
   overflow-x: hidden;
-  /* overflow-y: hidden; */
   padding: 10px;
-  /* background-color: #0f7e53; */
   background-image: linear-gradient(to right, #0f7e53, #063825);
   color: white;
   list-style-type: none;

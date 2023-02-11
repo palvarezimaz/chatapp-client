@@ -22,8 +22,9 @@ function MessageArea({ userName }) {
   const [usersList, setUsersList] = useState([]);
 
   const rooms = ['General', 'Partial'];
+
   //////////// USERS //////////////
-  /////////////////////////////////
+
   const initReactiveProperties = (user) => {
     user.connected = true;
     user.directMessages = [];
@@ -35,7 +36,6 @@ function MessageArea({ userName }) {
       user.self = user.userID === socket.id;
       initReactiveProperties(user);
     });
-    //sort them. this nees some react
     users = users.sort((a, b) => {
       if (a.self) return -1;
       if (b.self) return 1;
@@ -45,10 +45,10 @@ function MessageArea({ userName }) {
     setUsersList(users);
   });
 
-  //////////////////////////////
-  /////////////////////////////
+
+
   ///////////// MESSAGES //////////
-  //////////////////////////////////
+
   function handleMessageChange(event) {
     setMessage(event.target.value);
   }
@@ -70,12 +70,9 @@ function MessageArea({ userName }) {
     };
 
     setMessageList([...messageList, newMessage]);
-    // icq.play(0.2);
   });
-  ////////////////////////////////////////////
-  /////////////// Direct messaging //////////
-  ////////////////////////////////////////////
 
+  /////////////// Direct messaging //////////
   //Direct chat USer name
   const [selectedUserForDirectChat, setSelectedUserForDirectChat] =
     useState(null);
@@ -105,10 +102,7 @@ function MessageArea({ userName }) {
 
   ///// SELECT USER
 
-  ////////////////////////////////////////
   /// Direct messages implementation /////
-  ////////////////////////////////////////
-
   function handleDirectMessageChange(event, usersList) {
     setPrivateMessage(event.target.value);
   }
@@ -149,16 +143,6 @@ function MessageArea({ userName }) {
     };
     setDirectMessageList([...directMessageList, newMessage]);
   });
-
-  ////////////// END OF DIRECT CHAT SOCKET IO logic
-  /////////////////////////////////////////
-  /////////////////////////////////////////
-
-  //// FUTURE DEVELOPMENT
-  // const sendMessage2 = (userName) => {
-  //   socket.emit('Welcome Message', loggedUser);
-  //   // socket.on('Welcome Message', name => {} )
-  // };
 
   return (
     <>

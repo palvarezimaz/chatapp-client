@@ -11,32 +11,20 @@ function SidePanel({ usersList, userForDirectChat }) {
           usersList.map((user, index) => (
             <li
               key={index}
-              className={`eachUser ${
-                user.hasNewMessages === true ? ' new-direct-messages' : ''
-              }`}
+              className={`eachUser ${user.hasNewMessages === true ? ' new-direct-messages' : ''
+                }`}
               onClick={() => userForDirectChat(index)}
             >
               {user.username}
             </li>
           ))}
       </div>
-      {/* FUTURE DEVELOPMENT <div className="RoomsBox">
-        <h4>Private Messages or Rooms</h4>
-        {rooms &&
-          rooms.map((room, index) => (
-            <li key={index} className="eachRoom">
-              {room}
-            </li>
-          ))}
-      </div> */}
       <div>
         <h3>DM</h3>
         <h3>
           <RemoveUser />
         </h3>
         <h4 className="MessageArea-Title-Sidebar">
-          {/* <span className="Chat-name-sidebar">Chat</span>
-          <span className="App-name-sidebar">App</span> */}
         </h4>
       </div>
     </div>

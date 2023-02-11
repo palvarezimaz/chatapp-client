@@ -25,24 +25,9 @@ function DirectChat({
     icq.play(0.2);
   }
 
-  //// Trying to filter by to and from only
-  // const tempList = [];
-  // const [individualList, setIndividualList] = useState([]);
-
-  // const makeList = () => {
-  //   directMessageList.forEach((message) => {
-  //     if (message.from === loggedUser) {
-  //       tempList.push(message);
-  //     } else if (message.toName === selectedUserForDirectChat)
-  //       tempList.push(message);
-  //   });
-  //   setIndividualList([...individualList, ...tempList]);
-  // };
-
   return (
     <div className="Chat">
       <h3 className="Chat-section">Direct chat</h3>
-      {/* if this doesn't work, change lines 37-38 with directMessageList || individualList*/}
       <section className="messages">
         {directMessageList &&
           directMessageList.map((eachMsg, index) => (
