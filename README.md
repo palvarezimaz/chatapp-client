@@ -4,7 +4,7 @@
 
 A proof of concept, real-time message app using React as Front end and Express as Back end, served by Socket.io as a websocket implementation.
 
-See the app [here](https://paichatapp.herokuapp.com/)
+See the app [here](https://palvarezimaz.github.io/chatapp-server/)
 
 This is served by the ChatApp Server [here](https://github.com/palvarezimaz/chatapp-server)
 
@@ -49,6 +49,7 @@ This project uses:
 - Express.js v4.18.1
 - Sass v1.53.0
 - Uifx v2.0.7
+- Gh-Pages
 
 ## Instructions
 
@@ -57,6 +58,9 @@ This project uses:
 1. Clone the [server](https://github.com/palvarezimaz/chatapp-server)
 2. Run `npm i` to install all the dependancies
 3. Deploy to your favourite service.
+4. Clone the [client](https://github.com/palvarezimaz/chatapp-client)
+5. Update all the urls
+6. Deploy to your favourit react-friendly service (I'm using gh-pages node package)
 
 ### Note:
 
