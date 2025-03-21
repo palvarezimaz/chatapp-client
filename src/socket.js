@@ -5,7 +5,7 @@ if (process.env.NODE_ENV === 'production') {
   URL = 'https://github.com/palvarezimaz/chatapp-server';
 }
 const socket = io(URL, { 
-  withCredentials: true, 
+  withCredentials: false, 
   extraHeaders: {
     "my-custom-header": "ChatApp"
   },
