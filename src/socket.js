@@ -2,7 +2,7 @@ import { io } from 'socket.io-client';
 
 let URL = 'http://localhost:3002';
 if (process.env.NODE_ENV === 'production') {
-  URL = 'https://paichatapp.herokuapp.com/';
+  URL = 'https://github.com/palvarezimaz/chatapp-server';
 }
 const socket = io(URL, { autoConnect: false });
 

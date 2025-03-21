@@ -8,7 +8,7 @@ function ToGitHub() {
       <br />
 
       <a
-        href="https://github.com/palvarezimaz/chatapp-server"
+        href="https://github.com/palvarezimaz/chatapp-client"
         target="_blank"
         rel="noopener noreferrer"
       >
