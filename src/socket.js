@@ -5,7 +5,7 @@ const URL = 'https://pai-chatapp-server.koyeb.app/';
 const socket = io(URL, { 
   withCredentials: false, 
   extraHeaders: {
-    "Access-Control-Allow-Origin": "https://pai-chatapp-server.koyeb.app/"
+    "Access-Control-Allow-Origin": URL
   },
   autoConnect: false });
 
