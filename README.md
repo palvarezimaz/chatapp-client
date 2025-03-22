@@ -55,7 +55,7 @@ This project uses:
 
 - To install and deploy in production:
 
-1. Clone the [server](https://pai-chatapp-server.koyeb.app/)
+1. Clone the [server](https://github.com/palvarezimaz/chatapp-server)
 2. Run `npm i` to install all the dependancies
 3. Deploy to your favourite service.
 4. Clone the [client](https://github.com/palvarezimaz/chatapp-client)
