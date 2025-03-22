@@ -1,5 +1,5 @@
 {
-  "proxy": "https://palvarezimaz.github.io/chatapp-client",
+  "proxy": "https://palvarezimaz.github.io/chatapp-client:8000",
   "homepage": "http://palvarezimaz.github.io/chatapp-client",
   "name": "chatappclient",
   "version": "0.1.0",
