@@ -1,9 +1,7 @@
 import { io } from 'socket.io-client';
 
-let URL = 'http://localhost:3002';
-if (process.env.NODE_ENV === 'production') {
-  URL = 'https://pai-chatapp-server.koyeb.app/';
-}
+const URL = 'https://pai-chatapp-server.koyeb.app/';
+
 const socket = io(URL, { 
   withCredentials: false, 
   extraHeaders: {
